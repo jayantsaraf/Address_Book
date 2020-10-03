@@ -29,7 +29,7 @@ namespace Address_Book
                         customer.display();
                         break;
                     case 2:
-                        Console.WriteLine("Enter the first name of contact to be edited");
+                        Console.WriteLine("Enter the first name of contacts to be edited");
                         string first = Console.ReadLine();
                         int check = customer.Edit(first);
                         if (check == 0)

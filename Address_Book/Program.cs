@@ -17,7 +17,7 @@ namespace Address_Book
             while (a == 1)
             {
                 List<Contact> list = new List<Contact>();
-                Console.WriteLine("Enter your choice: 0.Add the data, 1.View the data, 2.Edit the contact");
+                Console.WriteLine("Enter your choice: 0.Add the data, 1.View the data, 2.Edit the contact, 3.Remove contact");
                 int choice = int.Parse(Console.ReadLine());
                 AddressBook customer = new AddressBook();
                 switch (choice)
@@ -36,6 +36,11 @@ namespace Address_Book
                         {
                             Console.WriteLine("Name not found");
                         }
+                        break;
+                    case 3:
+                        Console.WriteLine("Enter the fist name of contact to be removed");
+                        first = Console.ReadLine();
+                        customer.Remove(first);
                         break;
 
                     default:

@@ -50,5 +50,16 @@ namespace Address_Book
             }
             return c;
         }
+
+        public void Remove(string firstName)
+        {
+            foreach(Contact i in list)
+            {
+                if(i.fName==firstName)
+                {
+                    list.Remove(i);
+                }
+            }
+        }
     }
 }

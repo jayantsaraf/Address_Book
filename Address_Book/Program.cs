@@ -14,8 +14,7 @@ namespace Address_Book
             Console.WriteLine("Welcome to Address Book!");
             Contact c1 = new Contact("rakesh", "sharma", "chinar park", "kolkata", "west bengal", "700157", "8017126325", "xyz@gmail.com");
             int a = 1;
-            while (a == 1)
-            {
+            
                 List<Contact> list = new List<Contact>();
                 Console.WriteLine("Enter your choice: 0.Add the data, 1.View the data, 2.Edit the contact, 3.Remove contact");
                 int choice = int.Parse(Console.ReadLine());
@@ -47,7 +46,7 @@ namespace Address_Book
                         Console.WriteLine("Enter correct choice");
                         break;
                 }
-            }
+            
 
         }
 

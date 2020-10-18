@@ -61,5 +61,9 @@ namespace Address_Book
                 }
             }
         }
+        public List<Contact> GetAddressBook()
+        {
+            return list;
+        }
     }
 }

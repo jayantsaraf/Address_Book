@@ -6,16 +6,16 @@ namespace Address_Book
 {
     class AddressBook
     {
-        List<Contact> list = new List<Contact>();
+        public HashSet<Contact> list = new HashSet<Contact>();
         public void Input()
         {
-            string[] details;
+            string[] details = new string[9];
             
             //// Taking input from user
             Console.WriteLine("Enter following details separated by ,");
             Console.WriteLine("First Name, Last Name, Address, City, State, pincode, phone, email address");
             details = Console.ReadLine().Split(",");
-            Contact c1 = new Contact(details[0], details[1], details[2], details[3], details[4], details[5], details[6], details[7]);
+            var c1 = new Contact(details[0], details[1], details[2], details[3], details[4], details[5], details[6], details[7]);
             list.Add(c1);
         }
         public void display()
@@ -61,7 +61,7 @@ namespace Address_Book
                 }
             }
         }
-        public List<Contact> GetAddressBook()
+        public HashSet<Contact> GetAddressBook()
         {
             return list;
         }

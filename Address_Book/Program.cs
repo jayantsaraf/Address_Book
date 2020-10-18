@@ -17,63 +17,76 @@ namespace Address_Book
             while (option1)
             {
                 StartAddressBook:
-                Console.WriteLine("Enter your choice: 1. Add adress book, 2.Open address book,3. Search Person by City or State, 4.Exit");
+                Console.WriteLine("Enter your choice: 1. Add adress book, 2.Open address book," +
+                    "3. View persons by City, 4. View Person by State, 5.Exit");
                 int option = int.Parse(Console.ReadLine());
-                string firstName;
+                string addressBookName;
                 switch (option)
                 {
                     case 1:
-                        Console.WriteLine("Enter first name of contact to be added in address book");
-                        firstName = Console.ReadLine();
-                        bool duplicateFirstNameCheck = collectionAddressBook.CheckDuplicateFirstName(firstName);
+                        Console.WriteLine("Enter name of address book");
+                        addressBookName = Console.ReadLine();
+                        bool duplicateFirstNameCheck = collectionAddressBook.CheckDuplicateFirstName(addressBookName);
                         if(duplicateFirstNameCheck==false)
                         {
                             Console.WriteLine("Address Book with this fist name already exists");
                             goto StartAddressBook;
                         }
-                        collectionAddressBook.AddAddressBook(firstName);
-                        newAddressBook = collectionAddressBook.GetAddressBook(firstName);
+                        collectionAddressBook.AddAddressBook(addressBookName);
+                        newAddressBook = collectionAddressBook.GetAddressBook(addressBookName);
                         break;
 
                     case 2:
                         Console.WriteLine("Enter first name of address book to be opened");
-                        firstName = Console.ReadLine();
-                        newAddressBook = collectionAddressBook.GetAddressBook(firstName);
+                        addressBookName = Console.ReadLine();
+                        newAddressBook = collectionAddressBook.GetAddressBook(addressBookName);
                         if (newAddressBook == null)
                         {
                             Console.WriteLine("No such Address Book");
                             goto StartAddressBook;
                         }
                         break;
-                    case 3: 
-                        Console.WriteLine("Enter 1. Search by City, 2.Search by State");
-                        int choiceOfSearch = int.Parse(Console.ReadLine());    
-                        switch(choiceOfSearch)
+                    case 3:
+                        cityEntry:
+                        Console.WriteLine("Enter city name whose person details you want");
+                        string cityRequired = Console.ReadLine();
+                        Dictionary<string, Contact> cityDictionary = collectionAddressBook.CityDictionary();
+                        foreach(var dict in cityDictionary)
                         {
-                            case 1:
-                                Console.WriteLine("Enter the city");
-                                string cityOfSearch = Console.ReadLine();
-                                string[] citySearchList = collectionAddressBook.SearchByCity(cityOfSearch);
-                                Console.WriteLine("List of all persons in given city");
-                                foreach(var i in cityOfSearch)
-                                {
-                                    Console.WriteLine(cityOfSearch[i]+ "\n");
-                                }
-                                break;
-                            case 2:
-                                Console.WriteLine("Enter the state");
-                                string stateOfSearch = Console.ReadLine();
-                                string[] stateSearchList = collectionAddressBook.SearchByState(stateOfSearch);
-                                Console.WriteLine("List of all persons in given city");
-                                foreach (var i in stateOfSearch)
-                                {
-                                    Console.WriteLine(stateOfSearch[i] + "\n");
-                                }
-                                break;
+                            if (cityDictionary.ContainsKey(cityRequired))
+                            {
+                                Console.WriteLine("First Name:" + dict.Value.fName + "Last Name:" + dict.Value.lName + 
+                                    "Address:" + dict.Value.address + "City:" + dict.Value.city
+                                   + "State:" + dict.Value.state + "pincode:" + dict.Value.phone + "phone: " + dict.Value.phone + "email address:" + dict.Value.email + "\n");
+                            }
+                            else
+                            {
+                                Console.WriteLine("City doesn't exist");
+                                goto cityEntry;
+                            }
                         }
                         break;
-
                     case 4:
+                        stateEntry:
+                        Console.WriteLine("Enter state name whose person details you want");
+                        string stateRequired = Console.ReadLine();
+                        Dictionary<string, Contact> stateDictionary = collectionAddressBook.StateDictionary();
+                        foreach (var dict in stateDictionary)
+                        {
+                            if (stateDictionary.ContainsKey(stateRequired))
+                            {
+                                Console.WriteLine("First Name:" + dict.Value.fName + "Last Name:" + dict.Value.lName +
+                                    "Address:" + dict.Value.address + "City:" + dict.Value.city
+                                   + "State:" + dict.Value.state + "pincode:" + dict.Value.phone + "phone: " + dict.Value.phone + "email address:" + dict.Value.email + "\n");
+                            }
+                            else
+                            {
+                                Console.WriteLine("State doesn't exist");
+                                goto stateEntry;
+                            }
+                        }
+                        break;
+                    case 5:
                         option1 = false;
                         break;
                     default:
@@ -90,7 +103,7 @@ namespace Address_Book
                     }
 
                     List<Contact> list = new List<Contact>();
-                    Console.WriteLine("Enter your choice: 0.Add the data, 1.View the data, 2.Edit the contact, 3.Remove contact, 4.Exit");
+                    Console.WriteLine("Enter your choice: 0.Add the data, 1.View the data, 2.Edit the contact, 3.Remove contact, 4. Go to multiple address book option, 5.Exit");
                     int choice = int.Parse(Console.ReadLine());
                     switch (choice)
                     {
@@ -115,6 +128,8 @@ namespace Address_Book
                             newAddressBook.Remove(first);
                             break;
                         case 4:
+                            goto StartAddressBook;
+                        case 5:
                             a = 0;
                             break;
                         default:

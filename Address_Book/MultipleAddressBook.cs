@@ -9,17 +9,17 @@ namespace Address_Book
     {
         Dictionary<string, AddressBook> collectionAddressBook = new Dictionary<string, AddressBook>();
 
-        public void AddAddressBook(string firstName)
+        public void AddAddressBook(string addressBookName)
         {
             AddressBook newAddressBook = new AddressBook();
-            collectionAddressBook.Add(firstName, newAddressBook);
+            collectionAddressBook.Add(addressBookName, newAddressBook);
         }
 
-        public AddressBook GetAddressBook(string firstName)
+        public AddressBook GetAddressBook(string addressBookName)
         {
-            if(collectionAddressBook.ContainsKey(firstName))
+            if(collectionAddressBook.ContainsKey(addressBookName))
             {
-                return collectionAddressBook[firstName];
+                return collectionAddressBook[addressBookName];
             }
             return null;
         }
@@ -39,7 +39,7 @@ namespace Address_Book
             while(enumerator.MoveNext())
             {
                 AddressBook searchAddressBook =  enumerator.Current.Value;
-                List<Contact> listOfSearch =  searchAddressBook.GetAddressBook();
+                HashSet<Contact> listOfSearch =  searchAddressBook.GetAddressBook();
                 foreach(Contact i in listOfSearch)
                 {
                     if(i.city==searchKey)
@@ -58,7 +58,7 @@ namespace Address_Book
             while (enumerator.MoveNext())
             {
                 AddressBook searchAddressBook = enumerator.Current.Value;
-                List<Contact> listOfSearch = searchAddressBook.GetAddressBook();
+                HashSet<Contact> listOfSearch = searchAddressBook.GetAddressBook();
                 foreach (Contact i in listOfSearch)
                 {
                     if (i.city == searchKey)
@@ -68,6 +68,42 @@ namespace Address_Book
                 }
             }
             return listOfSearchPersonsByState;
+        }
+        public Dictionary<string, Contact> CityDictionary()
+        {
+            Dictionary<string, Contact> cityDictionary = new Dictionary<string, Contact>();
+            Dictionary<string, AddressBook>.Enumerator enumerator = collectionAddressBook.GetEnumerator();
+            while (enumerator.MoveNext())
+            {
+                AddressBook searchAddressBook = enumerator.Current.Value;
+                HashSet<Contact> listOfAddressBook = searchAddressBook.GetAddressBook();
+                HashSet<Contact>.Enumerator enumerator1 = listOfAddressBook.GetEnumerator();
+                while(enumerator1.MoveNext())
+                {
+                    Contact c = enumerator1.Current;
+                    cityDictionary.Add(enumerator1.Current.city, c);
+                    
+                }
+            }
+            return cityDictionary;
+        }
+        public Dictionary<string, Contact> StateDictionary()
+        {
+            Dictionary<string, Contact> stateDictionary = new Dictionary<string, Contact>();
+            Dictionary<string, AddressBook>.Enumerator enumerator = collectionAddressBook.GetEnumerator();
+            while (enumerator.MoveNext())
+            {
+                AddressBook searchAddressBook = enumerator.Current.Value;
+                HashSet<Contact> listOfAddressBook = searchAddressBook.GetAddressBook();
+                HashSet<Contact>.Enumerator enumerator1 = listOfAddressBook.GetEnumerator();
+                while (enumerator1.MoveNext())
+                {
+                    Contact c = enumerator1.Current;
+                    stateDictionary.Add(enumerator1.Current.state, c);
+
+                }
+            }
+            return stateDictionary;
         }
 
     }

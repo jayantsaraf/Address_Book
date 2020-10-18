@@ -17,7 +17,7 @@ namespace Address_Book
             while (option1)
             {
                 StartAddressBook:
-                Console.WriteLine("Enter your choice: 1. Add adress book, 2.Open address book,3.Exit");
+                Console.WriteLine("Enter your choice: 1. Add adress book, 2.Open address book,3. Search Person by City or State, 4.Exit");
                 int option = int.Parse(Console.ReadLine());
                 string firstName;
                 switch (option)
@@ -45,7 +45,35 @@ namespace Address_Book
                             goto StartAddressBook;
                         }
                         break;
-                    case 3:
+                    case 3: 
+                        Console.WriteLine("Enter 1. Search by City, 2.Search by State");
+                        int choiceOfSearch = int.Parse(Console.ReadLine());    
+                        switch(choiceOfSearch)
+                        {
+                            case 1:
+                                Console.WriteLine("Enter the city");
+                                string cityOfSearch = Console.ReadLine();
+                                string[] citySearchList = collectionAddressBook.SearchByCity(cityOfSearch);
+                                Console.WriteLine("List of all persons in given city");
+                                foreach(var i in cityOfSearch)
+                                {
+                                    Console.WriteLine(cityOfSearch[i]+ "\n");
+                                }
+                                break;
+                            case 2:
+                                Console.WriteLine("Enter the state");
+                                string stateOfSearch = Console.ReadLine();
+                                string[] stateSearchList = collectionAddressBook.SearchByState(stateOfSearch);
+                                Console.WriteLine("List of all persons in given city");
+                                foreach (var i in stateOfSearch)
+                                {
+                                    Console.WriteLine(stateOfSearch[i] + "\n");
+                                }
+                                break;
+                        }
+                        break;
+
+                    case 4:
                         option1 = false;
                         break;
                     default:

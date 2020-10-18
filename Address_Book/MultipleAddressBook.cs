@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Address_Book
@@ -29,6 +30,44 @@ namespace Address_Book
                 return false;
             }
             return true;
+        }
+        public string[] SearchByCity(string searchKey)
+        {
+            int countOfList = 0;
+            string[] listOfSearchPersonsByCity = new string[] { };
+            Dictionary<string, AddressBook>.Enumerator enumerator = collectionAddressBook.GetEnumerator();
+            while(enumerator.MoveNext())
+            {
+                AddressBook searchAddressBook =  enumerator.Current.Value;
+                List<Contact> listOfSearch =  searchAddressBook.GetAddressBook();
+                foreach(Contact i in listOfSearch)
+                {
+                    if(i.city==searchKey)
+                    {
+                        listOfSearchPersonsByCity[countOfList++] = i.fName;
+                    }
+                }
+            }
+            return listOfSearchPersonsByCity;
+        }
+        public string[] SearchByState(string searchKey)
+        {
+            int countOfList = 0;
+            string[] listOfSearchPersonsByState = new string[] { };
+            Dictionary<string, AddressBook>.Enumerator enumerator = collectionAddressBook.GetEnumerator();
+            while (enumerator.MoveNext())
+            {
+                AddressBook searchAddressBook = enumerator.Current.Value;
+                List<Contact> listOfSearch = searchAddressBook.GetAddressBook();
+                foreach (Contact i in listOfSearch)
+                {
+                    if (i.city == searchKey)
+                    {
+                        listOfSearchPersonsByState[countOfList++] = i.fName;
+                    }
+                }
+            }
+            return listOfSearchPersonsByState;
         }
 
     }

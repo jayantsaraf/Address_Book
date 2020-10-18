@@ -22,5 +22,14 @@ namespace Address_Book
             }
             return null;
         }
+        public bool CheckDuplicateFirstName(string fName)
+        {
+            if(collectionAddressBook.ContainsKey(fName))
+            {
+                return false;
+            }
+            return true;
+        }
+
     }
 }

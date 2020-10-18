@@ -16,6 +16,7 @@ namespace Address_Book
             bool option1 = true;
             while (option1)
             {
+                StartAddressBook:
                 Console.WriteLine("Enter your choice: 1. Add adress book, 2.Open address book,3.Exit");
                 int option = int.Parse(Console.ReadLine());
                 string firstName;
@@ -24,6 +25,12 @@ namespace Address_Book
                     case 1:
                         Console.WriteLine("Enter first name of contact to be added in address book");
                         firstName = Console.ReadLine();
+                        bool duplicateFirstNameCheck = collectionAddressBook.CheckDuplicateFirstName(firstName);
+                        if(duplicateFirstNameCheck==false)
+                        {
+                            Console.WriteLine("Address Book with this fist name already exists");
+                            goto StartAddressBook;
+                        }
                         collectionAddressBook.AddAddressBook(firstName);
                         newAddressBook = collectionAddressBook.GetAddressBook(firstName);
                         break;
@@ -35,6 +42,7 @@ namespace Address_Book
                         if (newAddressBook == null)
                         {
                             Console.WriteLine("No such Address Book");
+                            goto StartAddressBook;
                         }
                         break;
                     case 3:
@@ -42,7 +50,7 @@ namespace Address_Book
                         break;
                     default:
                         Console.WriteLine("Enter correct option");
-                        break;
+                        goto StartAddressBook;
                 }
                 Console.WriteLine("Welcome to Address Book!");
                 int a = 1;

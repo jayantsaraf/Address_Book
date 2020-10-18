@@ -51,6 +51,7 @@ namespace Address_Book
                         Console.WriteLine("Enter city name whose person details you want");
                         string cityRequired = Console.ReadLine();
                         Dictionary<string, Contact> cityDictionary = collectionAddressBook.CityDictionary();
+                        int cityCount = 0;
                         foreach(var dict in cityDictionary)
                         {
                             if (cityDictionary.ContainsKey(cityRequired))
@@ -64,13 +65,16 @@ namespace Address_Book
                                 Console.WriteLine("City doesn't exist");
                                 goto cityEntry;
                             }
+                            cityCount++;
                         }
+                        Console.WriteLine("Total cities : " + cityCount);
                         break;
                     case 4:
                         stateEntry:
                         Console.WriteLine("Enter state name whose person details you want");
                         string stateRequired = Console.ReadLine();
                         Dictionary<string, Contact> stateDictionary = collectionAddressBook.StateDictionary();
+                        int stateCount = 0;
                         foreach (var dict in stateDictionary)
                         {
                             if (stateDictionary.ContainsKey(stateRequired))
@@ -84,7 +88,9 @@ namespace Address_Book
                                 Console.WriteLine("State doesn't exist");
                                 goto stateEntry;
                             }
+                            stateCount++;
                         }
+                        Console.WriteLine("Total states : " + stateCount);
                         break;
                     case 5:
                         option1 = false;

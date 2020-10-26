@@ -27,7 +27,7 @@ namespace Address_Book
                         Console.WriteLine("Enter name of address book");
                         addressBookName = Console.ReadLine();
                         bool duplicateFirstNameCheck = collectionAddressBook.CheckDuplicateFirstName(addressBookName);
-                        if(duplicateFirstNameCheck==false)
+                        if (duplicateFirstNameCheck == false)
                         {
                             Console.WriteLine("Address Book with this fist name already exists");
                             goto StartAddressBook;
@@ -52,11 +52,11 @@ namespace Address_Book
                         string cityRequired = Console.ReadLine();
                         Dictionary<string, Contact> cityDictionary = collectionAddressBook.CityDictionary();
                         int cityCount = 0;
-                        foreach(var dict in cityDictionary)
+                        foreach (var dict in cityDictionary)
                         {
                             if (cityDictionary.ContainsKey(cityRequired))
                             {
-                                Console.WriteLine("First Name:" + dict.Value.fName + "Last Name:" + dict.Value.lName + 
+                                Console.WriteLine("First Name:" + dict.Value.fName + "Last Name:" + dict.Value.lName +
                                     "Address:" + dict.Value.address + "City:" + dict.Value.city
                                    + "State:" + dict.Value.state + "pincode:" + dict.Value.phone + "phone: " + dict.Value.phone + "email address:" + dict.Value.email + "\n");
                             }
@@ -99,48 +99,51 @@ namespace Address_Book
                         Console.WriteLine("Enter correct option");
                         goto StartAddressBook;
                 }
-                Console.WriteLine("Welcome to Address Book!");
-                int a = 1;
-                while (a == 1)
+                while (option1 == true)
                 {
-                    if(newAddressBook==null)
+                    Console.WriteLine("Welcome to Address Book!");
+                    int a = 1;
+                    while (a == 1)
                     {
-                        break;
-                    }
+                        if (newAddressBook == null)
+                        {
+                            break;
+                        }
 
-                    List<Contact> list = new List<Contact>();
-                    Console.WriteLine("Enter your choice: 0.Add the data, 1.View the data, 2.Edit the contact, 3.Remove contact, 4. Go to multiple address book option, 5.Exit");
-                    int choice = int.Parse(Console.ReadLine());
-                    switch (choice)
-                    {
-                        case 0:
-                            newAddressBook.Input();
-                            break;
-                        case 1:
-                            newAddressBook.display();
-                            break;
-                        case 2:
-                            Console.WriteLine("Enter the first name of contacts to be edited");
-                            string first = Console.ReadLine();
-                            int check = newAddressBook.Edit(first);
-                            if (check == 0)
-                            {
-                                Console.WriteLine("Name not found");
-                            }
-                            break;
-                        case 3:
-                            Console.WriteLine("Enter the fist name of contact to be removed");
-                            first = Console.ReadLine();
-                            newAddressBook.Remove(first);
-                            break;
-                        case 4:
-                            goto StartAddressBook;
-                        case 5:
-                            a = 0;
-                            break;
-                        default:
-                            Console.WriteLine("Enter correct choice");
-                            break;
+                        List<Contact> list = new List<Contact>();
+                        Console.WriteLine("Enter your choice: 0.Add the data, 1.View the data, 2.Edit the contact, 3.Remove contact, 4. Go to multiple address book option, 5.Exit");
+                        int choice = int.Parse(Console.ReadLine());
+                        switch (choice)
+                        {
+                            case 0:
+                                newAddressBook.Input();
+                                break;
+                            case 1:
+                                newAddressBook.display();
+                                break;
+                            case 2:
+                                Console.WriteLine("Enter the first name of contacts to be edited");
+                                string first = Console.ReadLine();
+                                int check = newAddressBook.Edit(first);
+                                if (check == 0)
+                                {
+                                    Console.WriteLine("Name not found");
+                                }
+                                break;
+                            case 3:
+                                Console.WriteLine("Enter the fist name of contact to be removed");
+                                first = Console.ReadLine();
+                                newAddressBook.Remove(first);
+                                break;
+                            case 4:
+                                goto StartAddressBook;
+                            case 5:
+                                a = 0;
+                                break;
+                            default:
+                                Console.WriteLine("Enter correct choice");
+                                break;
+                        }
                     }
                 }
             }
@@ -150,5 +153,5 @@ namespace Address_Book
 
 
     }
-
 }
+

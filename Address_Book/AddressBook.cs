@@ -74,5 +74,26 @@ namespace Address_Book
             foreach (var name in sortedList)
                 Console.WriteLine(name.fName);
         }
+        public void DiplayAlphabeticallyByCityName()
+        {
+            List<Contact> sortedList = list.OrderBy(x => x.city).ToList();
+            Console.WriteLine("Dispaying the City name alphabetically");
+            foreach (var name in sortedList)
+                Console.WriteLine(name.city);
+        }
+        public void DiplayAlphabeticallyByStateName()
+        {
+            List<Contact> sortedList = list.OrderBy(x => x.state).ToList();
+            Console.WriteLine("Dispaying the State name alphabetically");
+            foreach (var name in sortedList)
+                Console.WriteLine(name.state);
+        }
+        public void DiplayAlphabeticallyByZip()
+        {
+            List<Contact> sortedList = list.OrderBy(x => x.zipcode).ToList();
+            Console.WriteLine("Dispaying the Zip Code Serially");
+            foreach (var name in sortedList)
+                Console.WriteLine(name.zipcode);
+        }
     }
 }

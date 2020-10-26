@@ -22,8 +22,8 @@ namespace Address_Book
         {
             foreach(Contact i in list)
             {
-                Console.WriteLine("First Name:" + i.fName + "Last Name:" + i.lName + "Address:" + i.address + "City:" + i.city
-                                   + "State:" + i.state + "pincode:" + i.phone + "phone: " + i.phone + "email address:" + i.email);
+                Console.WriteLine("First Name:" + i.fName + " Last Name:" + i.lName + " Address:" + i.address + " City:" + i.city
+                                   + " State:" + i.state + " pincode:" + i.phone + " phone: " + i.phone + " email address:" + i.email);
             }
         }
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Address_Book
@@ -20,6 +21,7 @@ namespace Address_Book
         }
         public void display()
         {
+            
             foreach(Contact i in list)
             {
                 Console.WriteLine("First Name:" + i.fName + " Last Name:" + i.lName + " Address:" + i.address + " City:" + i.city
@@ -64,6 +66,13 @@ namespace Address_Book
         public HashSet<Contact> GetAddressBook()
         {
             return list;
+        }
+        public void DiplayAlphabeticallyByPersonName()
+        {
+            List<Contact> sortedList = list.OrderBy(x => x.fName).ToList();
+            Console.WriteLine("Dispaying the Person name alphabetically");
+            foreach (var name in sortedList)
+                Console.WriteLine(name.fName);
         }
     }
 }

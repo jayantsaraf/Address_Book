@@ -5,6 +5,7 @@ using System.Text;
 using System.IO;
 using CsvHelper;
 using System.Globalization;
+using Newtonsoft.Json;
 
 namespace Address_Book
 {
@@ -46,7 +47,7 @@ namespace Address_Book
             using (var reader = new StreamReader(FilePath))
             using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
             {
-                Console.WriteLine("Reading done successfully from Address.csv file");
+                Console.WriteLine("Reading done successfully from ContactInfo.csv file");
                 foreach (Contact contact in listOfContacts)
                 {
                     Console.WriteLine("\t" + contact.firstName);
@@ -61,6 +62,37 @@ namespace Address_Book
                 using (var csvEport = new CsvWriter(writer, CultureInfo.InvariantCulture))
                 {
                     csvEport.WriteRecords(listOfContacts);
+                }
+            }
+
+        }
+        /// <summary>
+        /// Reading files from CSV and writing to JSON file
+        /// </summary>
+        public static void CsvToJSON()
+        {
+
+            string importFilePath = @"C:\Users\jayant\source\repos\Address_Book\Address_Book\Utility\ContactInfo.csv";
+            string exportFilePath = @"C:\Users\jayant\source\repos\Address_Book\Address_Book\Utility\ContactInfo.json";
+            using (var reader = new StreamReader(importFilePath))
+            using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
+            {
+                Console.WriteLine("Reading done successfully from ContactInfo.csv file");
+                foreach (Contact contact in listOfContacts)
+                {
+                    Console.WriteLine("\t" + contact.firstName);
+                    Console.WriteLine("\t" + contact.lastName);
+                    Console.WriteLine("\t" + contact.address);
+                    Console.WriteLine("\t" + contact.city);
+                    Console.WriteLine("\t" + contact.state);
+                    Console.WriteLine("\t" + contact.zipcode);
+                    Console.WriteLine("\n");
+                }
+                JsonSerializer jsonSerializer = new JsonSerializer();
+                using (StreamWriter streamWriter = new StreamWriter(exportFilePath))
+                using (JsonWriter writer = new JsonTextWriter(streamWriter))
+                {
+                    jsonSerializer.Serialize(writer, listOfContacts);
                 }
             }
 

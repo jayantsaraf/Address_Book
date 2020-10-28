@@ -44,7 +44,7 @@ namespace Address_Book
                 {
                     if(i.city==searchKey)
                     {
-                        listOfSearchPersonsByCity[countOfList++] = i.fName;
+                        listOfSearchPersonsByCity[countOfList++] = i.firstName;
                     }
                 }
             }
@@ -63,7 +63,7 @@ namespace Address_Book
                 {
                     if (i.city == searchKey)
                     {
-                        listOfSearchPersonsByState[countOfList++] = i.fName;
+                        listOfSearchPersonsByState[countOfList++] = i.firstName;
                     }
                 }
             }

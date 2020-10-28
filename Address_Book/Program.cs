@@ -159,6 +159,7 @@ namespace Address_Book
                                 break;
                         }
                         AddressBook.ImplementCSVDataDandling();
+                        AddressBook.CsvToJSON();
                     }
                 }
             }

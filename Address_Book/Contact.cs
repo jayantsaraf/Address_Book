@@ -6,8 +6,8 @@ namespace Address_Book
 {
     public class Contact
     {
-        public string fName;
-        public string lName;
+        public string firstName;
+        public string lastName;
         public string address;
         public string city;
         public string state;
@@ -17,8 +17,8 @@ namespace Address_Book
 
         public Contact()
         {
-            this.fName = "";
-            this.lName = "";
+            this.firstName = "";
+            this.lastName = "";
             this.address = "";
             this.city = "";
             this.state = "";
@@ -29,8 +29,8 @@ namespace Address_Book
 
         public Contact(string firstName, string lastName, string address, string city, string state, string zipcode, string phone, string email)
         {
-            this.fName = firstName;
-            this.lName = lastName;
+            this.firstName = firstName;
+            this.lastName = lastName;
             this.address = address;
             this.city = city;
             this.state = state;
@@ -41,8 +41,8 @@ namespace Address_Book
 
         public void display()
         {
-            Console.WriteLine("First Name:" + this.fName +
-                              "Last Name:" + this.lName +
+            Console.WriteLine("First Name:" + this.firstName +
+                              "Last Name:" + this.lastName +
                               "Address:" + this.address +
                               "City:" + this.city +
                               "State:" + this.state +

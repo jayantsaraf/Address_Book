@@ -56,7 +56,7 @@ namespace Address_Book
                         {
                             if (cityDictionary.ContainsKey(cityRequired))
                             {
-                                Console.WriteLine("First Name:" + dict.Value.fName + "Last Name:" + dict.Value.lName +
+                                Console.WriteLine("First Name:" + dict.Value.firstName + "Last Name:" + dict.Value.lastName +
                                     "Address:" + dict.Value.address + "City:" + dict.Value.city
                                    + "State:" + dict.Value.state + "pincode:" + dict.Value.phone + "phone: " + dict.Value.phone + "email address:" + dict.Value.email + "\n");
                             }
@@ -79,7 +79,7 @@ namespace Address_Book
                         {
                             if (stateDictionary.ContainsKey(stateRequired))
                             {
-                                Console.WriteLine("First Name:" + dict.Value.fName + "Last Name:" + dict.Value.lName +
+                                Console.WriteLine("First Name:" + dict.Value.firstName + "Last Name:" + dict.Value.lastName +
                                     "Address:" + dict.Value.address + "City:" + dict.Value.city
                                    + "State:" + dict.Value.state + "pincode:" + dict.Value.phone + "phone: " + dict.Value.phone + "email address:" + dict.Value.email + "\n");
                             }
@@ -158,6 +158,7 @@ namespace Address_Book
                                 Console.WriteLine("Enter correct choice");
                                 break;
                         }
+                        AddressBook.ImplementCSVDataDandling();
                     }
                 }
             }
